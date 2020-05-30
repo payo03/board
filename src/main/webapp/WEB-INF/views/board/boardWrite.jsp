@@ -10,7 +10,6 @@
 
 <!-- 공통 JavaScript -->
 <script type="text/javascript" src="/js/common/jquery.js"></script>
-<script type="text/javascript" src="/js/common/jquery.form.js"></script>
 <script type="text/javascript">
 	
 	$(document).ready(function(){		
@@ -39,28 +38,24 @@
 			$("#board_content").focus();
 			return;
 		}
-			
+		
 		var yn = confirm("게시글을 등록하시겠습니까?");		
 		if(yn){
 				
-			var filesChk = $("input[name='files[0]']").val();
-			if(filesChk == ""){
-				$("input[name='files[0]']").remove();
-			}
-			
-			$("#boardForm").ajaxForm({
-		    
-				url		: "/board/insertBoard",
-				enctype	: "multipart/form-data",
-				cache   : false,
+			$.ajax({	
+				
+			    url		: "/board/insertBoard",
+			    data    : $("#boardForm").serialize(),
+		        dataType: "JSON",
+		        cache   : false,
 		        async   : true,
-				type	: "POST",					 	
-				success : function(obj) {
-			    	insertBoardCallback(obj);				
-			    },	       
-			    error 	: function(xhr, status, error) {}
-			    
-		    }).submit();			 
+				type	: "POST",	
+		        success : function(obj) {
+		        	insertBoardCallback(obj);				
+		        },	       
+		        error 	: function(xhr, status, error) {}
+		        
+		    });
 		}
 	}
 	
@@ -88,7 +83,7 @@
 	<div id="container">
 		<div class="inner">		
 			<h2>게시글 작성</h2>
-			<form id="boardForm" name="boardForm" action="/board/insertBoard" enctype="multipart/form-data" method="post" onsubmit="return false;">
+			<form id="boardForm" name="boardForm">
 				<table width="100%" class="table02">
 				<caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
 				    <colgroup>
@@ -107,10 +102,6 @@
 						<tr>
 							<th>내용<span class="t_red">*</span></th>
 							<td><textarea id="board_content" name="board_content" cols="10" rows="5" class="textarea01"></textarea></td>
-						</tr>
-						<tr>
-							<th scope="row">첨부파일</th>
-							<td><input type="file" id="files[0]" name="files[0]" value=""></td>
 						</tr>
 				    </tbody>
 				</table>

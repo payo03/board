@@ -28,8 +28,7 @@ public class BoardController {
     /** 게시판 - 목록 페이지 이동 */
     @RequestMapping(value = "/boardList")
     public String boardList(HttpServletRequest request, HttpServletResponse response) throws Exception {
- 
-    	System.out.println("boardList 도착");
+    	
         return "board/boardList";
     }
  
@@ -127,7 +126,6 @@ public class BoardController {
     public ModelAndView fileDownload(@RequestParam("fileNameKey") String fileNameKey
                                     ,@RequestParam("fileName") String fileName
                                     ,@RequestParam("filePath") String filePath) throws Exception {
-          
         /** 첨부파일 정보 조회 */
         Map<String, Object> fileInfo = new HashMap<String, Object>();
         fileInfo.put("fileNameKey", fileNameKey);
