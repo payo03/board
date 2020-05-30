@@ -51,7 +51,7 @@
                 
             $.ajax({    
                 
-                url        : "/board/insertBoardReply",
+                url     : "/board/insertBoardReply",
                 data    : $("#boardForm").serialize(),
                 dataType: "JSON",
                 cache   : false,

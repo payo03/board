@@ -42,9 +42,9 @@
 		var yn = confirm("게시글을 등록하시겠습니까?");		
 		if(yn){
 				
-			$.ajax({	
+			$.ajax({
 				
-			    url		: "/board/insertBoard",
+				url		: "/board/insertBoard",
 			    data    : $("#boardForm").serialize(),
 		        dataType: "JSON",
 		        cache   : false,
@@ -83,7 +83,7 @@
 	<div id="container">
 		<div class="inner">		
 			<h2>게시글 작성</h2>
-			<form id="boardForm" name="boardForm">
+			<form id="boardForm" name="boardForm" action="/board/insertBoard" enctype="multipart/form-data" method="post" onsubmit="return false;">
 				<table width="100%" class="table02">
 				<caption><strong><span class="t_red">*</span> 표시는 필수입력 항목입니다.</strong></caption>
 				    <colgroup>
@@ -102,6 +102,10 @@
 						<tr>
 							<th>내용<span class="t_red">*</span></th>
 							<td><textarea id="board_content" name="board_content" cols="10" rows="5" class="textarea01"></textarea></td>
+						</tr>
+						<tr>
+							<th scope="row">첨부파일</th>
+							<td><input type="file" id="files[0]" name="files[0]"></td>
 						</tr>
 				    </tbody>
 				</table>

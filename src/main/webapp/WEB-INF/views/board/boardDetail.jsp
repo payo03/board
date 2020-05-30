@@ -113,7 +113,7 @@
             str += "</tr>";        
             str += "<tr>";
             str += "<th>내용</th>";
-            str += "<td colspan='3'>"+ boardSubject +"</td>";
+            str += "<td colspan='3'>"+ boardContent +"</td>";
             str += "</tr>";
             
             if(filesLen > 0){
@@ -212,8 +212,8 @@
                        
                     </tbody>
                 </table>        
-                <input type="hidden" id="board_seq"        name="board_seq"    value="${boardSeq}"/> <!-- 게시글 번호 -->
-                <input type="hidden" id="search_type"    name="search_type"     value="S"/> <!-- 조회 타입 - 상세(S)/수정(U) -->
+                <input type="hidden" id="board_seq"      name="board_seq"    value="${boardSeq}"/> <!-- 게시글 번호 -->
+                <input type="hidden" id="search_type"    name="search_type"  value="S"/> <!-- 조회 타입 - 상세(S)/수정(U) -->
             </form>
             <div class="btn_right mt15">
                 <button type="button" class="btn black mr5" onclick="javascript:goBoardList();">목록으로</button>
