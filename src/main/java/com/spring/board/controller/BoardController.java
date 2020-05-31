@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
  
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -69,11 +70,11 @@ public class BoardController {
     /** 게시판 - 등록 */
     @RequestMapping(value = "/insertBoard")
     @ResponseBody
+    @PostMapping(value = "", headers = ("content-type=multipart/*"))
     public BoardDto insertBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception {
  
         BoardDto boardDto = boardService.insertBoard(boardForm);
- 
-        System.out.println("insertboard 도착");
+        
         return boardDto;
     }
  

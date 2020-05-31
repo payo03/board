@@ -94,7 +94,7 @@ public class BoardService {
         insertCnt = boardDao.insertBoard(boardForm);
  
         List<BoardFileForm> boardFileList = getBoardFileInfo(boardForm);
- 
+        System.out.println(boardFileList.size());
         for (BoardFileForm boardFileForm : boardFileList) {
             boardDao.insertBoardFile(boardFileForm);
         }

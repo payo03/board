@@ -41,7 +41,12 @@
 		
 		var yn = confirm("게시글을 등록하시겠습니까?");		
 		if(yn){
-				
+			
+			var filesChk = $("input[name='files[0]']").val();
+			if(filesChk == ""){
+				$("input[name='files[0]']").remove();
+			}
+			
 			$.ajax({
 				
 				url		: "/board/insertBoard",
@@ -49,22 +54,22 @@
 		        dataType: "JSON",
 		        cache   : false,
 		        async   : true,
-				type	: "POST",	
-		        success : function(obj) {
-		        	insertBoardCallback(obj);				
+				type	: "POST",
+		        success : function(data) {
+		        	insertBoardCallback(data);				
 		        },	       
 		        error 	: function(xhr, status, error) {}
 		        
-		    });
+		    }).submit();
 		}
 	}
 	
 	/** 게시판 - 작성 콜백 함수 */
-	function insertBoardCallback(obj){
+	function insertBoardCallback(data){
 	
-		if(obj != null){		
+		if(data != null){		
 			
-			var result = obj.result;
+			var result = data.result;
 			
 			if(result == "SUCCESS"){				
 				alert("게시글 등록을 성공하였습니다.");				
@@ -105,7 +110,7 @@
 						</tr>
 						<tr>
 							<th scope="row">첨부파일</th>
-							<td><input type="file" id="files[0]" name="files[0]"></td>
+							<td><input type="file" id="files[0]" name="files[0]" value=""></td>
 						</tr>
 				    </tbody>
 				</table>
