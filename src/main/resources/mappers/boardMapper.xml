@@ -93,12 +93,11 @@
     </select>
     
 	<insert id="insertBoard" parameterType="com.spring.board.form.BoardForm">
-			
-		<selectKey resultType="int" keyProperty="board_re_ref" order="BEFORE">
-			
-			SELECT IFNULL(MAX(BOARD_RE_REF), 0) + 1 
-			FROM SPRINGBOARD.TB_BOARD
-			  
+		
+		<selectKey resultType="int" keyProperty="board_seq" order="AFTER">
+
+			SELECT LAST_INSERT_ID()
+
 		</selectKey>
 		
 		INSERT 

@@ -66,11 +66,10 @@ public class BoardController {
  
         return "board/boardWrite";
     }
- 
+    
     /** 게시판 - 등록 */
     @RequestMapping(value = "/insertBoard")
     @ResponseBody
-    @PostMapping(value = "", headers = ("content-type=multipart/*"))
     public BoardDto insertBoard(HttpServletRequest request, HttpServletResponse response, BoardForm boardForm) throws Exception {
  
         BoardDto boardDto = boardService.insertBoard(boardForm);
